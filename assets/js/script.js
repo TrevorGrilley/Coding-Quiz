@@ -188,5 +188,30 @@ function endQuiz() {
  finalScoreEl.textContent = time;
 }
 
-// Clicking "Start Quiz" button begins the quiz
+function saveHighscores() {
+  //Initials are saved when input by player
+  var initials = initialsEl.value;
+
+  //Ensure the box contains a value
+  if (initials !== "") {
+      //Request the saved scores from the local storage
+      var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+      //When new score happens, input initials
+      var newScore = {
+          score: time,
+          initials: initials
+      };
+
+      //Save to local storage
+      highscores.push(newScore);
+      window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+      ///When clicked, brought to page of highscores
+      window.location.href = "highscores.html"
+  }
+}
+
+
+// Click Start Quiz button to start the quiz
 startBtn.onclick = startQuiz
