@@ -81,6 +81,47 @@ function startQuiz() {
     newQuestion();
 }
 
+//Sets interval for time
+function setTime() {
+  currentTime = setInterval(function() {
+  time--;
+  timeEl.textContent = time;
+
+  //Check to see if player has time remaining
+  if (time <= 0) {
+          //if player has no time remaining end quiz
+          endQuiz();
+      }
+  }, 1000);
+}
+
+function newQuestion() {
+  //First question from list of questions
+  currentQuestion = questions[currentQuestionIndex];
+
+  //Title changes to current question
+  var titleEl = document.getElementById("quiz-questions-title")
+  titleEl.textContent = currentQuestion.title;
+
+  //Clears old questions
+  choicesEl.innerHTML = "";
+
+  currentQuestion.choices.forEach(function(choice, i) {
+  //Create buttons for each answer choice
+      var multipleChoice = document.createElement("button");
+      multipleChoice.setAttribute("class", "choices");
+      multipleChoice.setAttribute("value", choice);
+
+      multipleChoice.textContent = i + 1 + ". " + choice;
+
+      //Creates an event listner for each button
+      multipleChoice.onclick = chosenAnswer;
+      
+      //After player chooses question, answer is displayed on page
+      choicesEl.appendChild(multipleChoice);
+});
+}
+
 
 // Clicking "Start Quiz" button begins the quiz
 startBtn.onclick = startQuiz
