@@ -213,5 +213,8 @@ function saveHighscores() {
 }
 
 
-// Click Start Quiz button to start the quiz
+// Clicking "Start Quiz" button begins the quiz
 startBtn.onclick = startQuiz
+
+//Player clicks on button to save highscore
+submitBtn.onclick = saveHighscores;
