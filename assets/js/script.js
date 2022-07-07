@@ -123,5 +123,70 @@ function newQuestion() {
 }
 
 
+//How program responds to selected answer
+function chosenAnswer() {
+  console.log(this.value)
+  console.log(questionIndex)
+  console.log(questions[questionIndex].answer)
+    //If answer was answered incorrectly 15 secs are deducted.
+        if (this.value !== questions[currentQuestionIndex].answer) {
+        console.log(this.value)
+
+
+    //15 second deduction for wrong answer
+    time -=15;    
+
+    //No deductions for correct answer
+    if (time < 0) {
+        time = 0;
+    }
+    
+    //Time adjusts if right/wrong answer was selected
+    timeEl.textContent = time;
+
+    //Response if incorrect was was selected
+    responseEl.textContent = 'Incorrect!';
+
+    } else { 
+    //Response if correct answer was selected
+    responseEl.textContent = "Correct!"
+    }
+    //Displays on screen if answer was right/wrong
+    responseEl.setAttribute("class", "response");
+
+    setTimeout(function(){
+        responseEl.setAttribute("class", "response hidden");
+    }, 1000);
+
+    //Proceed to the next question
+    currentQuestionIndex++;
+
+    //When there are no more questions quiz ends
+    if (currentQuestionIndex === questions.length) {
+        endQuiz();
+    } else {
+        newQuestion();
+    }
+}
+
+
+//Function to end the game 
+function endQuiz() {
+  //Stops execution of action at set interval
+  clearInterval(currentTime);
+
+ //Hide Questions
+ questionEl.setAttribute("class", "hidden")
+
+ //End Screen
+ let endScreenEl = document.getElementById("game-over")
+
+ endScreenEl.removeAttribute("class");
+
+ //Final score when quiz is finished
+ let finalScoreEl = document.getElementById("final-score");
+ finalScoreEl.textContent = time;
+}
+
 // Clicking "Start Quiz" button begins the quiz
 startBtn.onclick = startQuiz
