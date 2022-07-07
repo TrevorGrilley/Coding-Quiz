@@ -20,3 +20,58 @@ a {
     top: 10px;
     right: 10px;
 }
+
+.wrapper {
+    margin: 100px auto 0 auto;
+    max-width: 600px;
+}
+
+.start {
+    text-align: center;
+}
+
+h1 {
+    font-size: large;
+}
+
+
+button {
+    font-size: medium;
+    color: white;
+    background: black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px 8px; 
+}
+
+/*when mouse is over button, color changes*/
+button:hover {
+    background-color: darkgray;
+}
+
+.choices button {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.response {
+    font-style: italic;
+    font-size: 120%;
+    margin-top: 20px;
+    padding-top: 10px;
+    color: gray;
+    border-top: 2px solid #ccc;
+}
+
+ol {
+    overflow: auto;
+}
+
+
+li {
+    list-style: decimal;
+    padding: 5px;
+}
